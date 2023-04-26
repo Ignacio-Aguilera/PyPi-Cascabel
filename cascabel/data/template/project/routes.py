@@ -1,4 +1,4 @@
-from config import app
+from database_config import app, db
 from resources.routes.route import Route
 
 from app.controllers.home_controller  import HomeController

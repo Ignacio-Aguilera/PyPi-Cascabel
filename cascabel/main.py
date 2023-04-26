@@ -15,7 +15,6 @@ def main():
    from cascabel.dictionaries.commands import commands
    from cascabel.classes.cascabel import Cascabel
 
-  
 
    if len(sys.argv) == 1:
       Cascabel().show_info()
@@ -37,13 +36,13 @@ def main():
 
    elif len(sys.argv) == 3 and sys.argv[1] in commands["make_manager_controller"]:
       Cascabel().make_manager_controller()
-
-   elif len(sys.argv) == 3 and sys.argv[1] in commands["make_database"]:
-      Cascabel().make_database()
+   
+   elif (len(sys.argv) == 3 or len(sys.argv)) == 4 and sys.argv[1] in commands["make_model"]:
+      Cascabel().make_model()
 
    elif len(sys.argv) == 3 and sys.argv[1] in commands["make_request"]:
       Cascabel().make_request()
-
+      
    else:
       Cascabel().catch_error()
          

@@ -1,19 +1,25 @@
-from flask import *
+from flask import render_template, redirect, url_for
 
-class NAME:
+class CLASSNAME:
 
     def index(self):  
-        return "NAME: index"
+        return render_template('NAME/index.html')
 
     def view(self, id):
-        return f"NAME: view {id}"
+        return render_template('NAME/view.html')
 
-    def store(self):
-        return f"NAME: store {id}"
+    def get_store(self):
+        return render_template('NAME/store.html')
+    
+    def post_store(self):
+        return redirect(url_for('NAME_index'))
 
-    def update(self, id):
-        return f"NAME: update {id}"
+    def get_update(self, id):
+        return render_template('NAME/update.html')
+    
+    def post_update(self, id):
+        return redirect(url_for('NAME_view', id=id))
 
     def delete(self, id):
-        return f"NAME: delete {id}"
+        return redirect(url_for('NAME_index'))
 

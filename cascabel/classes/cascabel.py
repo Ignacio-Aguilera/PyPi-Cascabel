@@ -7,7 +7,7 @@ file_dir = os.path.dirname(os.path.realpath(__file__)).replace("\\", "/").replac
 
 class Cascabel:
     
-    VERSION = "1.0a1.dev1"
+    VERSION = "LOCAL_TEST"
     #================================================================================================
     
     def print_simplify_logo (self):
@@ -42,28 +42,25 @@ class Cascabel:
 
         print(logo)
 
-        #import platform
+        import platform
         
-        #if os.path.isfile(f"{os.getcwd()}/routes.py") and os.path.isfile(f"{os.getcwd()}/config.py") and os.path.isfile(f"{os.getcwd()}/execute.py"):
-        #    is_project_dir = "Si"
-        #else:
-        #    is_project_dir = "No"
+        if os.path.isfile(f"{os.getcwd()}/routes.py") and os.path.isfile(f"{os.getcwd()}/config.py") and os.path.isfile(f"{os.getcwd()}/execute.py"):
+            is_project_dir = "Si"
+        else:
+            is_project_dir = "No"
             
     
-        #print(' Sistema Operativo:', platform.system() )
-        #print(' Platafotma       :', sys.platform)
-        #print(' Distribucion     :', platform.platform())
-        #print(' Version de python:', sys.version.replace('\n',''))
-        #print(' Version dict     :', sys.version_info)
-        #print(' Ejecutable actual:', sys.executable)
-        #print(' Argumentos       :', sys.argv)
-        #print(' Ruta actual      :', os.getcwd())
-        #print(' Ruta de projecto?:', is_project_dir)
-        #print(' Ruta de ejecución:', os.path.dirname(os.path.realpath(__file__)))
-        #print('')
-
-
-      
+        print(' Sistema Operativo:', platform.system() )
+        print(' Platafotma       :', sys.platform)
+        print(' Distribucion     :', platform.platform())
+        print(' Version de python:', sys.version.replace('\n',''))
+        print(' Version dict     :', sys.version_info)
+        print(' Ejecutable actual:', sys.executable)
+        print(' Argumentos       :', sys.argv)
+        print(' Ruta actual      :', os.getcwd())
+        print(' Ruta de projecto?:', is_project_dir)
+        print(' Ruta de ejecución:', os.path.dirname(os.path.realpath(__file__)))
+        print('')
 
     def catch_error(self):
 
@@ -100,7 +97,6 @@ class Cascabel:
                     
             print(f"\n ¿Quisiste ejecutar el siguiente comando '{y_c}{possible_command}{w_c}' ?")
 
-
     def verify_libraries(self):
         self.print_logo()
 
@@ -122,26 +118,17 @@ class Cascabel:
         except:
             print(" |- Dotevn: " + r_c + "No instalado" + w_c)
 
-        print(y_c + "\n Librerias Opcionales" + w_c)
-
-        #try:
-        #    import bcrypt
-        #    print(" |- Bcrypt : Instalado")
-        #except:
-        #    print(" |- Bcrypt : " + r_c + "No instalado" + w_c)
-
-        try:
-            import MySQLdb 
-            print(" |- MySqldb: Instalado")
-        except:
-            print(" |- MySqldb: " + r_c + "No instalado" + w_c)
-
-
         try:
             import flask_wtf
             print(" |- Flask-WTF: Instalado")
         except:
             print(" |- Flask-WTF: " + r_c + "No instalado" + w_c)
+
+        try:
+            import flask_sqlalchemy 
+            print(" |- Flask-SqlAlchemy: Instalado")
+        except:
+            print(" |- Flask-SqlAlchemy: " + r_c + "No instalado" + w_c) 
 
 
         print("\n Puedes instalar las librerias manualmente o utilizando " + y_c + "'--install_libraries'" + w_c)
@@ -158,91 +145,49 @@ class Cascabel:
         self.print_logo()
 
         if (sys.version).find('3.') > -1:
-   
-            try:
-                import flask
-                return_code_1 = '0'
-            except:
-                self.print_logo()
-                return_code_1 = os.system(f"{executable} -m pip install Flask")
-                
-            try:
-                import dotenv
-                return_code_2 = '0' 
-            except:
-                self.print_logo()
-                return_code_2 = os.system(f"{executable} -m pip install python-dotenv")
-
-            try:
-                import MySQLdb 
-                return_code_3 = '0'
-            except:
-                self.print_logo()
-
-                return_code_3 = os.system(f"{executable} -m pip install mysqlclient") #si tira errorse procedera a realizar comandos extras segun sistema op
-
-                if str(return_code_3) != '0':
-                    if platform.system() == "Windows":
-
-                        return_code_3 = os.system("python -m pip install mysqlclient")
-
-                    elif platform.system() == "Linux":
-                        self.print_logo()
-                        print(f" --mysqlclient --")
-                        print(f' -> {y_c}default-libmysqlclient-dev{w_c} -> mysqlclient')
-                        print()
-                        return_code_tmp = os.system("sudo apt install default-libmysqlclient-dev")
-
-                        self.print_logo()
-                        print(f" --mysqlclient --")
-                        print(f' -> default-libmysqlclient-dev -> {y_c}mysqlclient{w_c}')
-                        print()
-                        return_code_3   = os.system(f"{executable} -m pip install mysqlclient")
-
-                    elif platform.system() == "Darwin":
-
-                        self.print_logo()
-                        print(f" --mysqlclient --")
-                        print(f' -> {y_c}Homebrew{w_c} -> mysql -> mysqlclient')
-                        print()
-
-                        return_code_tmp = os.system('brew -v') #verifica si esta instalado brew
-                        
-                        print(return_code_tmp)
-                        if str(return_code_tmp) != "0":
-                            return_code_tmp = os.system('/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"')
-                        
-                        self.print_logo()
-                        print(f" --mysqlclient --")
-                        print(f' -> Homebrew -> {y_c}mysql{w_c} -> mysqlclient')
-                        print()
-
-                        return_code_tmp = os.system('brew list mysql') #verifica si esta instalado mysql
-
-                        if str(return_code_tmp) != "0":
-                            return_code_tmp = os.system('brew install mysql')
-
-                        self.print_logo()
-                        print(f" --mysqlclient --")
-                        print(f' -> Homebrew -> mysql -> {y_c}mysqlclien{w_c}')
-                        print()
-
-                        return_code_3 = os.system(f"{executable} -m pip install mysqlclient")
             
-
             try:
-                import flask_wtf
-                return_code_4 = 0
-            except:
-                self.print_logo()
-                return_code_4 = os.system(f"{executable} -m pip install Flask-WTF")
+                import pip
 
-            self.print_logo()
-            print(" flask:", return_code_1)    
-            print(" dot_env:", return_code_2)  
-            print(" mysqlclient:", return_code_3)  
+                try:
+                    import flask
+                    return_code_1 = '0'
+                except:
+                    self.print_logo()
+                    return_code_1 = os.system(f"{executable} -m pip install Flask")
+                    
+                try:
+                    import dotenv
+                    return_code_2 = '0' 
+                except:
+                    self.print_logo()
+                    return_code_2 = os.system(f"{executable} -m pip install python-dotenv")
+
+                try:
+                    import flask_wtf
+                    return_code_3 = 0
+                except:
+                    self.print_logo()
+                    return_code_3 = os.system(f"{executable} -m pip install Flask-WTF")
+
+                try:
+                    import flask_sqlalchemy
+                    return_code_4 = 0
+                except:
+                    self.print_logo()
+                    return_code_4 = os.system(f"{executable} -m pip install flask-sqlalchemy")
+
+                #self.print_logo()
+                print(" flask:", return_code_1)    
+                print(" dot_env:", return_code_2)
+                print(" flask_wtf:", return_code_3)
+                print(" flask_sqlalchemy:", return_code_4)
+
+            except: 
+                print(" Se detuvo la instalación debido a que no se detecto pip")
+            
         else:
-            print(" Esta función solo esta disponible para python 3.8")
+            print(" Esta función solo esta disponible para python 3")
 
        
     def show_info(self):
@@ -274,35 +219,12 @@ class Cascabel:
             shutil.copytree(template_dir, project_dir, ignore=None)
             print(" La plantilla del proyecto ha sido creada correctamente")
     
-    def make_database(self):
-        
-        self.print_logo()
-
-        database_name = sys.argv[2].lower()
-        database_class_name = database_name.replace("_", " ").capitalize().replace(" ", "")
-        project_dir  = f'{cmd_dir}/'
-        db_template_dir = f'{file_dir}/data/template/database/NAME_database.py'
-
-        content = open(db_template_dir, "r").read().replace("NAME", database_class_name)
-        
-        if os.path.isdir(project_dir + "databases/databases/"):
-            if not os.path.isfile(project_dir + "databases/databases/" + database_name + ".py"):
-                file = open(project_dir + "databases/databases/" + database_name + "_database.py", "w")
-                file.write(content)
-                file.close()
-
-                print("la base de datos ha sido creada correctamente")
-            else:
-                print("Error el archivo ya existe")
-        else:
-            print("Directorio invalido")
-
     def make_controller(self):
 
         self.print_logo()
 
         controller_name = sys.argv[2].lower()
-        controller_class_name = controller_name.replace("_", " ").capitalize().replace(" ", "") + "Controller"
+        controller_class_name = controller_name.replace("_", " ").title().replace(" ", "") + "Controller"
 
         project_dir  = f'{cmd_dir}/'
         controller_template_dir = f'{file_dir}/data/template/controller/simple_controller.py'
@@ -340,7 +262,7 @@ class Cascabel:
         self.print_logo()
 
         request_name = sys.argv[2].lower()
-        request_class_name = request_name.replace("_", " "). capitalize().replace(" ", "") + "Request"
+        request_class_name = request_name.replace("_", " "). title().replace(" ", "") + "Request"
 
         project_dir  = f'{cmd_dir}/'
         request_template_dir = f'{file_dir}/data/template/request/request.py'
@@ -365,12 +287,12 @@ class Cascabel:
         self.print_logo()
 
         controller_name = sys.argv[2].lower()
-        controller_class_name = controller_name.replace("_", " ").capitalize().replace(" ", "") + "Controller"
+        controller_class_name = controller_name.replace("_", " ").title().replace(" ", "") + "Controller"
 
         project_dir  = f'{cmd_dir}/'
         controller_template_dir = f'{file_dir}/data/template/controller/manager_controller.py'
 
-        content = open(controller_template_dir, "r").read().replace("NAME", controller_class_name)
+        content = open(controller_template_dir, "r").read().replace("CLASSNAME", controller_class_name).replace("NAME", controller_name)
         
         if not os.path.isdir(project_dir + "app/controllers/") or not os.path.isfile(project_dir + "routes.py"):
             print(" Directorio invalido")
@@ -389,19 +311,78 @@ class Cascabel:
         import_route_stat = "from resources.routes.route import Route\n"
         add_route_stat =  f"Route().add_route(app, 'GET', '/{controller_name}',  {controller_class_name}().index , '{controller_name}_index') \n"
         add_route_stat += f"Route().add_route(app, 'GET', '/{controller_name}/view/<id>',  {controller_class_name}().view , '{controller_name}_view') \n"
-        add_route_stat += f"Route().add_route(app, 'POST', '/{controller_name}/store',  {controller_class_name}().store , '{controller_name}_store') \n"
-        add_route_stat += f"Route().add_route(app, 'POST', '/{controller_name}/update/<id>',  {controller_class_name}().update , '{controller_name}_update') \n"
+        add_route_stat += f"Route().add_route(app, 'GET', '/{controller_name}/store',  {controller_class_name}().get_store , 'get_{controller_name}_store') \n"
+        add_route_stat += f"Route().add_route(app, 'POST', '/{controller_name}/store',  {controller_class_name}().post_store , 'post_{controller_name}_store') \n"
+        add_route_stat += f"Route().add_route(app, 'GET', '/{controller_name}/update/<id>',  {controller_class_name}().get_update , 'get_{controller_name}_update') \n"
+        add_route_stat += f"Route().add_route(app, 'POST', '/{controller_name}/update/<id>',  {controller_class_name}().post_update , 'post_{controller_name}_update') \n"
         add_route_stat += f"Route().add_route(app, 'POST', '/{controller_name}/delete/<id>',  {controller_class_name}().delete , '{controller_name}_delete') \n"
 
         if routes_content.count(import_route_stat) == 0:
             routes_content = import_route_stat + routes_content +  import_stat + add_route_stat
-            
         else:
             routes_content = routes_content +import_stat + add_route_stat
         
         file = open(project_dir + "routes.py", "w").write(routes_content)
 
-        print(" El controlador sido creada correctamente")
-       
-            
+        controller_html_path = f'templates/{controller_name}' 
+        if not os.path.exists(controller_html_path):
+            os.makedirs(controller_html_path)
 
+        html_content = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAGE</title>
+</head>
+<body>
+    <p>PAGE</p>
+</body>
+</html>
+        """
+
+        file = open(controller_html_path + "/index.html", "w").write(html_content.replace('PAGE', f'{controller_name}_index'))
+        file = open(controller_html_path + "/view.html", "w").write(html_content.replace('PAGE', f'{controller_name}_view'))
+        file = open(controller_html_path + "/store.html", "w").write(html_content.replace('PAGE', f'get_{controller_name}_store'))
+        file = open(controller_html_path + "/update.html", "w").write(html_content.replace('PAGE', f'get_{controller_name}_update'))
+
+        print(" El controlador sido creada correctamente")
+    
+    def make_model(self):
+        self.print_logo()
+
+        model_name = sys.argv[2].lower()
+        model_bind = sys.argv[3]
+        model_class_name = model_name.replace("_", " ").title().replace(" ", "") + "Model"
+
+        project_dir  = f'{cmd_dir}/'
+        model_template_dir = f'{file_dir}/data/template/model/model.py'
+
+        content = open(model_template_dir, "r").read()
+        content = content.replace("TABLE_NAME", model_name)
+        content = content.replace("NAME", model_class_name)
+        content = content.replace("BIND", model_bind)
+        
+
+        if not os.path.isdir(project_dir + "app/models/") or not os.path.isfile(project_dir + "routes.py"):
+            print(" Directorio invalido")
+            return None
+        
+        if os.path.isfile(project_dir + "app/models/" + model_name +"_model.py"):
+            print(" Error el archivo ya existe")
+            return None
+        
+        file = open(project_dir + "app/models/" + model_name + "_model.py", "w")
+        file.write(content)
+        file.close()
+
+        database_content = open(project_dir + "database_config.py", "r+").read()
+        import_stat = f"from app.models.{model_name}_model import {model_class_name}\n"
+
+        database_content =  database_content + import_stat
+ 
+        file = open(project_dir + "database_config.py", "w").write(database_content)
+
+        print(" El controlador sido creada correctamente")
