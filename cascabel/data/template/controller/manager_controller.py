@@ -5,7 +5,7 @@ class CLASSNAME:
     def index(self):  
         return render_template('NAME/index.html')
 
-    def view(self, id):
+    def read(self, id):
         return render_template('NAME/view.html')
 
     def get_store(self):

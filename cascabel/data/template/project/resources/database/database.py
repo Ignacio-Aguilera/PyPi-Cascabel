@@ -1,8 +1,10 @@
 from flask_sqlalchemy import SQLAlchemy
-from flask import Flask
+from resources.app.app import App
 
 class Database(SQLAlchemy):
-    def set_flask_app(self, app):
+    app = App
+    
+    def __init__(self, app):
         self.app = app
 
     def add_database(self, bind:str, url:str):
@@ -16,8 +18,10 @@ class Database(SQLAlchemy):
             self.app.config["SQLALCHEMY_BINDS"] = {}
 
         self.app.config["SQLALCHEMY_BINDS"][bind] = url
+        
+        #Por cada nuevo bind se regenera
+        super(Database, self).__init__(self.app)
     
-    def init_SQLAlchemy(self):
-        self.__init__(self.app)
-
-db = Database()
+    def create_all(self):
+        with self.app.app_context():
+            super(Database, self).create_all()

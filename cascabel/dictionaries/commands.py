@@ -1,9 +1,7 @@
 commands = {
-    "install_libraries"  : ["--install_libraries", "-il"],
-    "verify_libraries"   : ["--verify_libraries" , "-vl"],
-
-    "new_project"        : ["--new_project"                 , "-new", "-n"],
-    "make_controller"    : ["--make_controller"             , "-mc"],
+    "verify_libraries"        : ["--verify_libraries" , "-vl"],
+    "new_project"             : ["--new_project"                 , "-new", "-n"],
+    "make_controller"         : ["--make_controller"             , "-mc"],
     "make_manager_controller" : ["--make_manager_controller", "-mmc"],
     "make_model"              : ["--make_model"             , "-mm"],
     "make_request"            : ["--make_request"           , "-re"],
@@ -13,7 +11,6 @@ commands = {
 
 full_commands = {
     "verify_libraries" : "--verify_libraries",
-    "install_libraries": "--install_libraries",
     "new_project"      : "--new_project {project name}",
     "make_controller"  : "--make_controller {controller_name}",
     "make_manager_controller"  : "--make_manager_controller {controller_name}",

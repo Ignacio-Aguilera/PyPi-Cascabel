@@ -22,9 +22,6 @@ def main():
    elif len(sys.argv) == 2 and sys.argv[1] in commands["verify_libraries"]:
       Cascabel().verify_libraries()
 
-   elif len(sys.argv) == 2 and sys.argv[1] in commands["install_libraries"]:
-     Cascabel().install_libraries()
-
    elif len(sys.argv) == 2 and sys.argv[1] in commands["help"]:
       Cascabel().show_help()
 

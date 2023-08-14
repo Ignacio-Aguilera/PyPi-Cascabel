@@ -47,7 +47,7 @@ setup(
     long_description_content_type="text/markdown",
     long_description=LONG_DESCRIPTION,
     packages=find_packages(),
-    install_requires=['colorama', 'flask', 'python-dotenv'],
+    install_requires=['colorama', 'flask', 'python-dotenv', 'Flask-WTF', 'flask-sqlalchemy'],
     keywords=['python'],
     classifiers=[
         "Development Status :: 1 - Planning",

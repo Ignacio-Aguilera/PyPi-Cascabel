@@ -1,7 +1,9 @@
-from routes import app, db
+import app_config
+import route_config
+import database_config
 
-with app.app_context():
-    db.create_all()
+from resources.vars.vars import app
+from resources.vars.vars import db
 
-if __name__ == '__main__': 
-    app.run(debug=True)
+db.create_all()
+app.run(debug=True)
