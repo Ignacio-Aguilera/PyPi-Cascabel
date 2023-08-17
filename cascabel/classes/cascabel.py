@@ -11,7 +11,7 @@ class Cascabel:
     DATABASE_FILE   = f"{PROJECT_DIR}/database_config.py"
     EXCECUTION_FILE = f"{PROJECT_DIR}/execute.py"
     
-    VERSION = "1.0a1.dev3"
+    VERSION = "1.0a1.dev5"
     
     
     #================================================================================================

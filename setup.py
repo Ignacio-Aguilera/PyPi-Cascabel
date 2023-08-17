@@ -5,7 +5,7 @@ import os
 here = os.path.abspath(os.path.dirname(__file__))
 
 import pypandoc
-long_description = open('README.md', 'r').read()
+long_description = open('README.md', 'r', encoding='UTF-8').read()
    
 import os
 
@@ -19,7 +19,7 @@ for nombre_directorio, dirs, ficheros in os.walk(dir_file):
             for nombre_fichero in ficheros:
                 archivos.append(directorio + '/' + nombre_fichero)
 
-VERSION = '1.0a1.dev4'
+VERSION = '1.0a1.dev5'
 
 file = open('cascabel/classes/cascabel.py', 'r')
 
