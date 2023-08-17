@@ -1,4 +1,8 @@
-![](https://github.com/Ignacio-Aguilera/PyPi-Cascabel/blob/main/cascabel.png?raw=True)
+
+<img src="https://github.com/Ignacio-Aguilera/PyPi-Cascabel/blob/main/cascabel.png?raw=True" alt="cascabel" height="72" width="343"/> 
+ 
+___
+
 
 Cascabel es un proyecto desarrollado principalmente con el propósito de agilizar la creación de páginas web mediante el uso del framework Flask y sus librerias asociadas (_**Flask SqlAlchemy**_ y _**Flask WTF**_).
 
