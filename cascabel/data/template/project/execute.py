@@ -1,7 +1,13 @@
-from routes import app, db
+"""
+SCRIPT    : execute.py
+OBJECTIVE : Initialize the app.
+"""
 
-with app.app_context():
-    db.create_all()
+import app_config
+import database_config
+import route_config
 
-if __name__ == '__main__': 
-    app.run(debug=True)
+
+from resources.vars.vars import app
+from resources.vars.vars import db
+app.run(debug=True)

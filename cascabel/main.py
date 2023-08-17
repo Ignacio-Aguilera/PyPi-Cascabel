@@ -22,9 +22,6 @@ def main():
    elif len(sys.argv) == 2 and sys.argv[1] in commands["verify_libraries"]:
       Cascabel().verify_libraries()
 
-   elif len(sys.argv) == 2 and sys.argv[1] in commands["install_libraries"]:
-     Cascabel().install_libraries()
-
    elif len(sys.argv) == 2 and sys.argv[1] in commands["help"]:
       Cascabel().show_help()
 
@@ -34,8 +31,8 @@ def main():
    elif len(sys.argv) == 3 and sys.argv[1] in commands["make_controller"]:
       Cascabel().make_controller()
 
-   elif len(sys.argv) == 3 and sys.argv[1] in commands["make_manager_controller"]:
-      Cascabel().make_manager_controller()
+   elif len(sys.argv) == 3 and sys.argv[1] in commands["make_crud_controller"]:
+      Cascabel().make_crud_controller()
    
    elif (len(sys.argv) == 3 or len(sys.argv)) == 4 and sys.argv[1] in commands["make_model"]:
       Cascabel().make_model()

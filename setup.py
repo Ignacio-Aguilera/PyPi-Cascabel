@@ -4,10 +4,9 @@ import os
 
 here = os.path.abspath(os.path.dirname(__file__))
 
-with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
-    long_description = "\n" + fh.read()
-
-
+import pypandoc
+long_description = open('README.md', 'r').read()
+   
 import os
 
 archivos = []
@@ -20,7 +19,7 @@ for nombre_directorio, dirs, ficheros in os.walk(dir_file):
             for nombre_fichero in ficheros:
                 archivos.append(directorio + '/' + nombre_fichero)
 
-VERSION = '1.0a1.dev1'
+VERSION = '1.0a1.dev4'
 
 file = open('cascabel/classes/cascabel.py', 'r')
 
@@ -34,20 +33,20 @@ file = open('cascabel/classes/cascabel.py', 'w')
 file.write(contenido)
 file.close()
 
-DESCRIPTION = 'Agiliza la creción de páginas web con Flask'
-LONG_DESCRIPTION = 'Un paquete que te permitira agilizar la creación de paginas web mediante flask.'
+DESCRIPTION = 'Paquete creado para la agilización de creación de paginas con flask'
+LONG_DESCRIPTION = long_description
 
 # Setting up
 setup(
+    long_description_content_type='text/markdown',
     name="cascabel",
     version=VERSION,
     author="Ignacio Aguilera Oyaneder",
     author_email="<ignacio.a.o@outlook.com>",
     description=DESCRIPTION,
-    long_description_content_type="text/markdown",
     long_description=LONG_DESCRIPTION,
     packages=find_packages(),
-    install_requires=['colorama', 'flask', 'python-dotenv'],
+    install_requires=['colorama', 'flask', 'python-dotenv', 'Flask-WTF', 'flask-sqlalchemy'],
     keywords=['python'],
     classifiers=[
         "Development Status :: 1 - Planning",
